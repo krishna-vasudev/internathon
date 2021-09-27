@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Yaldevi:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <title>profile</title>
+    <!-- <link rel="stylesheet" href="profile.css"> -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    
+        nav {
+            height: 0;
+            width: 400px;
+            background-color: #222;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            position: absolute;
+            left: -340px;
+            /* overflow: hidden; */
+            transition: all .4s;
+            flex-direction: column;
+            z-index: 9999;
+        }
+    
+        .active {
+            min-height: 100vh;
+            left: 0%;
+            align-items: center;
+    
+        }
+    
+        .button {
+            position: absolute;
+            top: 1.5em;
+            cursor: pointer;
+            transition: 0.4s;
+            right: 0.1em;
+        }
+    
+        .btn-active {
+            filter: invert();
+            right: 45%;
+        }
+    
+        nav ul {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-top: 5.5em;
+        }
+    
+        nav ul li {
+            list-style: none;
+            margin: 0.5em 0;
+        }
+    
+        nav ul li a {
+            text-decoration: none;
+            color: azure;
+            text-transform: uppercase;
+            font-weight: 900;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 2.4rem;
+            position: relative;
+            text-align: center;
+        }
+    
+        nav ul li a:hover {
+            color: rgb(61, 61, 61);
+        }
+    
+        nav ul li a::before {
+            content: attr(data-text);
+            position: absolute;
+            color: lightblue;
+            width: 100%;
+            font-size: 1rem;
+            letter-spacing: 11px;
+            text-align: center;
+            text-shadow: 0 0 30px rgb(65, 199, 243),
+                0 0 50px rgb(65, 199, 243), 0 0 80px rgb(65, 199, 243);
+            top: 30%;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            opacity: 0;
+            transition: 0.4s;
+        }
+    
+        nav ul li a:hover:before,
+        nav ul li a:focus:before {
+            opacity: 1;
+            letter-spacing: 9px;
+        }
+    
+        .profile {
+            width: 80%;
+            min-height: 100vh;
+            margin: auto;
+            background-color: orange;
+            z-index: -11;
+            display: flex;
+            justify-content: space-evenly;
+        }
+    
+        .profile-card {
+            background-color: whitesmoke;
+            padding: clamp(5px, 1vw, 0.9em);
+            overflow: hidden;
+            box-shadow: 0px 0px 5px 5px grey;
+        }
+    
+        .user-info {
+            background-color: rgba(71, 255, 111, 0.623);
+            display: grid;
+            grid-template-rows: auto auto 2fr;
+            grid-template-columns: auto 3fr;
+            padding: 1em;
+            overflow: hidden;
+            margin-bottom: 1em;
+            box-shadow: 0 0 7px 1px rgb(84, 204, 84);
+            border-radius: 6px;
+            grid-template-areas: "pic name"
+                "pic loc"
+                "pic desc";
+        }
+    
+        .user-dp {
+            width: 90%;
+            border-radius: 30em;
+            grid-area: pic;
+        }
+    
+        .username {
+            grid-area: name;
+            align-items: center;
+            padding-right: 0.5em;
+            margin: 0.6em 0;
+            margin-left: auto;
+            font-family: 'Yaldevi', sans-serif;
+            font-weight: 500;
+            font-size: clamp(1.4rem, 3vw, 2.5rem);
+        }
+    
+        .userlocation {
+            padding-right: 0.7em;
+            grid-area: loc;
+            margin-left: auto;
+            margin-bottom: 0.9em;
+            font-size: 1.2rem;
+            font-family: 'Yaldevi', sans-serif;
+            font-size: clamp(0.7rem, 2vw, 1.2rem);
+        }
+    
+        .post-heading,
+        .user-desc {
+            text-align: center;
+            margin: 0;
+            margin-bottom: 0.5em;
+            font-size: 1.2rem;
+            font-family: 'Yaldevi', sans-serif;
+            font-size: clamp(0.7rem, 2vw, 1.2rem);
+        }
+    
+        .user-desc {
+            grid-area: desc;
+            font-size: clamp(0.5rem, 2vw, 1.2rem);
+        }
+    
+        .post-heading {
+            border: 2px solid black;
+            border-bottom: 2px solid black;
+            padding: 0.5rem 0;
+            margin-bottom: 1.5em;
+            letter-spacing: 1em;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size: clamp(0.9rem, 2vw, 1.8rem);
+            box-shadow: 0px 0px 3px 1px grey;
+        }
+    
+        .user-pic {
+            width: 100%;
+        }
+    
+        .date-time {
+            text-align: end;
+            margin: 0;
+            font-family: 'Yaldevi', sans-serif;
+            font-size: clamp(0.4rem, 1vw, 0.8rem);
+        }
+    
+        @media screen and (max-width : 500px) {
+            .explore-card {
+                width: 40%;
+            }
+        }
+    
+        /* this is post */
+        .post {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+    
+        .post-card {
+            width: 70%;
+            min-width: 250px;
+            padding: 0.6em;
+            position: relative;
+            box-shadow: 0px 3px 7px gray;
+            overflow: hidden;
+            height: 5em;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: height 0.5s ease-in-out;
+            margin-bottom: 2em;
+        }
+    
+        .post-info {
+            background-color: rgba(119, 151, 163, 0.623);
+            padding: 1em;
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 0.5em;
+        }
+    
+        .post-location,
+        .post-date {
+            padding: 1.2em;
+            font-weight: 500;
+            font-family: 'Yaldevi', sans-serif;
+            font-size: clamp(0.7rem, 2vw, 1.2rem);
+        }
+    
+        .post-pic {
+            object-position: center;
+            width: 100%;
+            height: 290px;
+            object-fit: cover;
+        }
+    
+        @media screen and (max-width:700px) {
+            .post-pic {
+                height: 300px;
+            }
+    
+            .post-card {
+                height: 4.1em;
+            }
+        }
+    
+        .toggle {
+            background: rgba(0, 0, 0, 0.1);
+            padding: clamp(0.3em, 2vw, 0.8em);
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+    
+        .toggle:hover {
+            background-color: rgb(74, 189, 228);
+    
+        }
+    
+        .drop {
+    
+            transition: transform 0.35s ease-in-out;
+    
+        }
+    
+        .active-post {
+            height: 25em;
+        }
+    
+        .active-anim {
+            animation: slide-down 1.5s ease-in-out;
+    
+        }
+    
+        .active-post-btn {
+            transform: rotate(-180deg);
+        }
+    
+        @media screen and (max-width: 500px) {
+            nav {
+                width: 100%;
+                left: -85%;
+            }
+    
+            /* compulsory to maintain this 2 font ratios */
+            nav ul li a {
+                font-size: 1.9rem;
+            }
+    
+            nav ul li a::before {
+                font-size: .8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <img class="button" src="https://img.icons8.com/ios/50/000000/menu--v4.png" / onclick=fun()>
+        <ul>
+            <li><a href="/" data-text="Explore">Explore</a></li>
+            <li><a href="/profile/{{current_user}}" data-text="Profile">Profile</a></li>
+            <li><a href="/post" data-text="Post">Post</a></li>
+            <li><a href="/accounts/logout" data-text="Logout">Logout</a></li>
+        </ul>
+    </nav>
+    <section class="profile">
+        <div class="profile-card">
+            <div class="user-info">
+                <img src="https://indianmemetemplates.com/wp-content/uploads/evil-doge.jpg" alt="" class="user-dp">
+                <p class="username">{{profile_user}}</p>
+                <p class="user-desc">this is description. Lorem, ipsum dolor sit amet consectetur adipisicing elit. At
+                    animi repudiandae iure voluptate in ea laboriosam, sequi ab sint aliquam.</p>
+                <p class="userlocation">unknown,unknown</p>
+            </div>
+            <h2 class="post-heading">POST TIMELINE</h2>
+            <div class="post">
+                {% for profile_post in profile_posts %}
+                <div class="post-card" id="{{profile_post.id}}card">
+                    <div class="post-info">
+                        <p class="post-location">{{profile_post.location}}</p>
+                        <p class="post-date">{{profile_post.date}}</p>
+                    </div>
+                    {% if profile_post.img %}
+                    <img src="{{profile_post.img.url}}" alt="post_img" class="post-pic">
+                    {% else %}
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.redd.it%2F5tjnsnn4fkn21.png&f=1&nofb=1" alt="post_img" class="post-pic">
+                    {% endif %}
+                    <div class="toggle" id="{{profile_post.id}}">
+                        <ion-icon name="chevron-down-outline" class="drop">
+                            </ ion-icon>
+                    </div>
+                </div>
+                <script>
+                    document.getElementById("{{profile_post.id}}").addEventListener("click", function () {
+                        document.getElementById('{{profile_post.id}}card').classList.toggle('active-post');
+                        document.getElementById("{{profile_post.id}}").classList.toggle('active-post-btn');
+                    });
+                </script>
+                {% endfor %}
+
+
+            </div>
+        </div>
+        </div>
+    </section>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script>
+        let button = document.getElementsByClassName('button')[0];
+        let nav = document.getElementsByTagName('nav')[0];
+        function fun() {
+            button.classList.toggle('btn-active');
+            nav.classList.toggle('active');
+        }
+    </script>
+</body>
+
+</html>

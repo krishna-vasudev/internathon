@@ -1,0 +1,1 @@
+web: gunicorn thejourneyapp.wsgi --log-file -
