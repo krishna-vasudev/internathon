@@ -78,6 +78,6 @@ Follow the link generated after last command and Hurrah!🎉 the app is running.
 Now although it's running good in local server but to deploy to heroku we have to make few more changes. Refer to [this](https://www.youtube.com/watch?v=UkokhawLKDU&list=WL&index=39) tutorial for detailed step by step deployment to heroku.
 
 ## 🐛 Bug Reporting
-Feel free to [open an issue](https://github.com/krishna-vasudev/ChitChat/issues) on github if you find any bug.
+Feel free to [open an issue](https://github.com/krishna-vasudev/internathon/issues) on github if you find any bug.
 ## 📜 License
 This software is open source, licensed under the [MIT License](/LICENSE).
