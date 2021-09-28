@@ -12,7 +12,6 @@ This is a django application powered by geocoder and geopy python module which h
   * [Features to add](#features-to-add)
   * [Feature request](#feature-request)
 * [Technologies and tools used](#technologies-and-tools-used)
-* [Prerequisites(Optional)](#)
 * [Installation and Setup(Optional)](#)
 * [Running in the local server(Optional)](#)
 * [Deploying the app to heroku(Optional)](#)
