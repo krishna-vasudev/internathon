@@ -7,6 +7,7 @@ This is a django application powered by geocoder and geopy python module which h
 ## Table of Contents
 * [Introduction](#introduction)
 * [link to deployed application](#link-to-deployed-application)
+* [Roles](#Roles)
 * [Features](#features)
   * [Current features](#current-features)
   * [Features to add](#features-to-add)
@@ -28,6 +29,10 @@ I made this project for hackathon in which i participated.It is a geotag photo a
 The application is deployed in heroku platform. This is the link to the deployed application <b>:</b>
  [https://thejourneyapp.herokuapp.com/](https://thejourneyapp.herokuapp.com/)
 
+## Roles
+Shivam Kumar Agarwal: (Frontend) designed layout of profile page and some parts of explore page.
+
+Debraj Bhal: (backend and integration) designed backend functionality and intergrated with frontend layouts.
 
 ## 🚀 Features
 ### Current features
